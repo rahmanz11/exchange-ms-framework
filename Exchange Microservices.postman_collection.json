@@ -1,0 +1,350 @@
+{
+	"info": {
+		"_postman_id": "3197ca89-35c6-4431-9dbf-f7a08aad3a57",
+		"name": "Exchange Microservices",
+		"description": "| service | **port** |\n| --- | --- |\n| exchange api | 4002 |\n| fund | \\- |\n| persist/confirm txns | 4005 |\n| persist exc requests | \\- |\n| sub account api | 4001 |\n| validate | 4003 |",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12170287"
+	},
+	"item": [
+		{
+			"name": "Create Sub Account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account_number\": \"12345\",\r\n    \"credential\": \"1234\",\r\n    \"balance\": 200000,\r\n    \"status\": \"ACTIVE\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4002/api/v1/create-sub-account",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4002",
+					"path": [
+						"api",
+						"v1",
+						"create-sub-account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Account Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4001/api/v1/123456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4001",
+					"path": [
+						"api",
+						"v1",
+						"123456"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account_number\": \"123456\",\r\n    \"credential\": \"1234\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4002/api/v1/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4002",
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Exchange",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjMxMTkyOTgsInN1Yl9hY2NvdW50X2lkIjoiMDM5NDk5MzgtMGVlMS00YzU0LWFjZmUtOTYyMzA2MDM1NGJjIn0._VMN163QpP8hZK0EUqkia0ASmKXDeDBTD8uQG2zRCK0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"from\": \"123456\",\r\n    \"fund\": \"456789\",\r\n    \"amt\": 5,\r\n    \"re\": \"systest\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4002/api/v1/exchange",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4002",
+					"path": [
+						"api",
+						"v1",
+						"exchange"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Status",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjI4MjQ2NjYsInN1Yl9hY2NvdW50X2lkIjoiYzI3MGUyYzQtN2Y2Ni00MjhhLTgyZjAtMzk1MGMyNTE2YTNlIn0.qBnP2dBauZAsmQ4XxayS7crMtRD_NKkH09QpkKFivWI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account_number\": \"1234\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4002/api/v1/status/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4002",
+					"path": [
+						"api",
+						"v1",
+						"status",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Enable/Disable",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjI4MDgzNzIsInN1Yl9hY2NvdW50X2lkIjoiYTRhMmJmMjktMGZjZC00YjU5LTljYTAtMzY1OTAyNzM5N2JhIn0.55JLpxFvAmphIrrQrvGlzUFFGdecaCnxYrVTNf23mFk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account_number\": \"1234\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4002/api/v1/enable/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4002",
+					"path": [
+						"api",
+						"v1",
+						"enable",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Balance",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjI3MzQyODgsInN1Yl9hY2NvdW50X2lkIjoiMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwIn0.ldd7hIBm__4YdWUjOBcPiu64uwo-rnn2vEHp2MUZ16s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account_number\": \"12345\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4002/api/v1/balance",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4002",
+					"path": [
+						"api",
+						"v1",
+						"balance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transaction Register",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				},
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjI4MDgzNzIsInN1Yl9hY2NvdW50X2lkIjoiYTRhMmJmMjktMGZjZC00YjU5LTljYTAtMzY1OTAyNzM5N2JhIn0.55JLpxFvAmphIrrQrvGlzUFFGdecaCnxYrVTNf23mFk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account_number\": \"1234\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4002/api/v1/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4002",
+					"path": [
+						"api",
+						"v1",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transaction",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjI4MjQ2NjYsInN1Yl9hY2NvdW50X2lkIjoiYzI3MGUyYzQtN2Y2Ni00MjhhLTgyZjAtMzk1MGMyNTE2YTNlIn0.qBnP2dBauZAsmQ4XxayS7crMtRD_NKkH09QpkKFivWI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transaction_id\": \"3be070b6-8cc5-40ea-853e-9abae52b767c\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4002/api/v1/transaction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4002",
+					"path": [
+						"api",
+						"v1",
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Link Account",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjI4MjQ2NjYsInN1Yl9hY2NvdW50X2lkIjoiYzI3MGUyYzQtN2Y2Ni00MjhhLTgyZjAtMzk1MGMyNTE2YTNlIn0.qBnP2dBauZAsmQ4XxayS7crMtRD_NKkH09QpkKFivWI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account_number\": \"12341\",\r\n    \"sub_account_number\": \"1234\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4002/api/v1/link-account",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4002",
+					"path": [
+						"api",
+						"v1",
+						"link-account"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
