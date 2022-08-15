@@ -8,12 +8,6 @@ import (
 
 // KafkaWriter creates a new kafka writer
 func KafkaWriter(kafkaURL string, topic string) *kafka.Writer {
-	// return &kafka.Writer{
-	// 	Addr:     kafka.TCP(kafkaURL),
-	// 	Topic:    topic,
-	// 	Balancer: &kafka.LeastBytes{},
-	// }
-
 	return kafka.NewWriter(kafka.WriterConfig{
 		Brokers:      []string{kafkaURL},
 		Topic:        topic,
